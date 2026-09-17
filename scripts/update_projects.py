@@ -127,9 +127,10 @@ def main():
     )
     parser.add_argument(
         "--include-private",
-        action="store_true",
+        action="store_false",
         default=True,
-        help="inclui repositórios privados como '🔒 nome' sem link (default: True)",
+        help="desativa a inclusão de repositórios privados "
+        "(default: incluir como '🔒 nome' sem link)",
     )
     args = parser.parse_args()
 
