@@ -6,31 +6,35 @@
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&size=20&duration=3200&pause=700&color=8B5CF6&center=true&vCenter=true&width=620&lines=Ol%C3%A1!+Eu+sou+o+Anderson+Mohamed+%F0%9F%91%8B;Estudante+de+Engenharia+de+Software;Apaixonado+por+tecnologia+e+aprendizado;Transformando+ideias+em+c%C3%B3digo" alt="Typing SVG">
+<!-- TYPING:START -->
+  <img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&size=20&duration=3200&pause=700&color=8B5CF6&center=true&vCenter=true&width=840&lines=Ol%C3%A1%21%20Eu%20sou%20o%20Anderson%20Mohamed%20%F0%9F%91%8B;%F0%9F%93%8D%20Brazil%2C%20MA;Estudante%20de%20Administra%C3%A7%C3%A3o%20e%20An%C3%A1lise%20e%20Desenvolvimento%20de%20Sistemas.;Em%20busca%20de%20conhecimento%20e%20aprendizado.;Transformando%20ideias%20em%20c%C3%B3digo%20%F0%9F%9A%80" alt="Typing SVG">
+<!-- TYPING:END -->
 </p>
 
 ---
 
 ## 👨‍💻 Sobre mim
 
+<!-- Gerado automaticamente por scripts/update_readme.py a partir do perfil do GitHub (nome, bio, localização). Frases fixas: edite as constantes no script. Não edite à mão. -->
+<!-- ABOUT:START -->
 ```bash
 $ whoami
-Anderson Mohamed — estudante de Engenharia de Software
-$ ./anderson --status
-"aprendendo todos os dias, um commit por vez" 🚀
+Anderson Mohamed
+$ ./anderson --bio
+"Estudante de Administração e Análise e Desenvolvimento de Sistemas."
+"Em busca de conhecimento e aprendizado."
 ```
 
-- 🎓 **Estudante de Engenharia de Software**
-- 📍 **Brasil, Maranhão**
-- 💡 Apaixonado por tecnologia, sempre em busca de conhecimento
+- 📍 **Brazil, MA**
 - 🛠️ Explorando novas linguagens e ferramentas a cada projeto
 - 🎯 Objetivo: construir soluções que façam a diferença
+<!-- ABOUT:END -->
 
 ---
 
 ## 🚀 Projetos
 
-<!-- Lista gerada automaticamente por scripts/update_projects.py (workflow Update Profile). Não edite à mão. -->
+<!-- Lista gerada automaticamente por scripts/update_readme.py (workflow Update Profile). Não edite à mão. -->
 <!-- PROJECTS:START -->
 | Projeto | Descrição | Stack |
 | --- | --- | --- |
@@ -45,7 +49,7 @@ $ ./anderson --status
 
 ## 📊 GitHub Stats
 
-> 💡 Os cards abaixo são gerados e versionados neste repositório por GitHub Actions a cada 3 horas, incluindo dados de repositórios privados. A lista de projetos é atualizada automaticamente.
+> 💡 Os cards abaixo são gerados e versionados neste repositório por GitHub Actions a cada 3 horas, incluindo dados de repositórios privados. As seções Sobre mim, animação e projetos são atualizadas automaticamente a partir do perfil.
 
 <p align="center">
   <picture>

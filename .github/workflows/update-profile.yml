@@ -69,17 +69,17 @@ jobs:
           options: user=AndersonMohamed&theme=default&hide_border=true&locale=pt_BR
           path: profile/streak-light.svg
           token: ${{ secrets.PROFILE_STATS_TOKEN }}
-      - name: Atualizar seção de projetos
+      - name: Atualizar seções dinâmicas do README (projetos, sobre mim, animação)
         env:
           GH_TOKEN: ${{ secrets.PROFILE_STATS_TOKEN }}
-        run: python3 scripts/update_projects.py
+        run: python3 scripts/update_readme.py
       - name: Commit e push (master)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add profile README.md
           if git diff --cached --quiet; then echo "sem mudanças"; exit 0; fi
-          git commit -m "Atualiza cards e lista de projetos"
+          git commit -m "Atualiza cards e seções dinâmicas do README"
           git pull --rebase origin master
           git push
   snake:
