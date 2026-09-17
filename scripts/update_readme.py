@@ -4,7 +4,8 @@
 Gera, a partir do perfil do GitHub (nome, bio, localização) e dos repositórios:
   - a animação do topo (Typing SVG);
   - a seção "Sobre mim";
-  - a lista de projetos.
+  - a lista de projetos;
+  - os banners do topo (assets/banner-light.svg e assets/banner-dark.svg).
 
 Uso:
     python scripts/update_readme.py [--readme README.md] [--dry-run] [--include-private]
@@ -20,6 +21,7 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+from xml.sax.saxutils import escape
 
 API = "https://api.github.com"
 PROFILE_REPO = "AndersonMohamed/AndersonMohamed"
@@ -41,6 +43,12 @@ ABOUT_FIXED_BULLETS = [
     "🛠️ Explorando novas linguagens e ferramentas a cada projeto",
     "🎯 Objetivo: construir soluções que façam a diferença",
 ]
+BANNER_TEMPLATES = {
+    "assets/banner-light.svg": "scripts/templates/banner-light.svg.tpl",
+    "assets/banner-dark.svg": "scripts/templates/banner-dark.svg.tpl",
+}
+BANNER_SUBTITLE_FALLBACK = "Desenvolvedor"
+BANNER_MAX_SUBTITLE_CHARS = 68
 
 
 def fetch_json(url, token):
@@ -147,6 +155,49 @@ def build_about(profile):
     return "\n".join(lines)
 
 
+def build_banners(profile, dry_run=False):
+    """Gera os banners do topo (SVG) a partir do perfil.
+
+    Substitui os placeholders dos templates (nome, subtítulo, cursor e linha
+    terminal) e grava apenas quando o conteúdo muda (idempotente). Retorna a
+    lista de arquivos alterados (ou que seriam alterados em dry-run).
+    """
+    bio = (profile.get("bio") or "").strip()
+    sentences = split_sentences(bio, 1)
+    subtitle = (
+        clamp_line(sentences[0], BANNER_MAX_SUBTITLE_CHARS)
+        if sentences
+        else BANNER_SUBTITLE_FALLBACK
+    )
+    name = (profile.get("name") or "").strip() or (profile.get("login") or "?")
+    whoami = f"$ whoami → {name}"
+    cursor_x = 450 + (len(subtitle) * 12) // 2 + 4
+
+    values = {
+        "{{NAME}}": escape(name),
+        "{{SUBTITLE}}": escape(subtitle),
+        "{{CURSOR_X}}": str(cursor_x),
+        "{{WHOAMI}}": escape(whoami),
+    }
+
+    changed = []
+    for dest, template in BANNER_TEMPLATES.items():
+        with open(template, encoding="utf-8") as f:
+            svg = f.read()
+        for key, value in values.items():
+            svg = svg.replace(key, value)
+        old = None
+        if os.path.exists(dest):
+            with open(dest, encoding="utf-8") as f:
+                old = f.read()
+        if old != svg:
+            if not dry_run:
+                with open(dest, "w", encoding="utf-8", newline="\n") as f:
+                    f.write(svg)
+            changed.append(dest)
+    return changed
+
+
 def build_table(repos, include_private):
     """Filtra, ordena e monta a tabela Markdown da seção de projetos."""
     rows = []
@@ -248,6 +299,13 @@ def main():
             print(f"=== {label if label != 'ABOUT' else 'SOBRE MIM'} ===")
             print(blocks[label])
             print()
+        print("=== BANNERS ===")
+        banner_changes = build_banners(profile, dry_run=True)
+        if banner_changes:
+            for path in banner_changes:
+                print(f"seria gravado: {path}")
+        else:
+            print("banners sem mudanças")
         return
 
     changed = [
@@ -256,17 +314,25 @@ def main():
         if replace_between(content, start, end, blocks[label]) != content
     ]
 
-    if not changed:
+    if changed:
+        new_content = content
+        for label, start, end in sections:
+            new_content = replace_between(new_content, start, end, blocks[label])
+
+        with open(args.readme, "w", encoding="utf-8", newline="\n") as f:
+            f.write(new_content)
+        print(
+            f"README atualizado: {args.readme} "
+            f"(seções alteradas: {', '.join(changed)})"
+        )
+    else:
         print("sem mudanças (README já atualizado)")
-        return
 
-    new_content = content
-    for label, start, end in sections:
-        new_content = replace_between(new_content, start, end, blocks[label])
-
-    with open(args.readme, "w", encoding="utf-8", newline="\n") as f:
-        f.write(new_content)
-    print(f"README atualizado: {args.readme} (seções alteradas: {', '.join(changed)})")
+    banner_changes = build_banners(profile)
+    if banner_changes:
+        print(f"banners atualizados: {', '.join(banner_changes)}")
+    else:
+        print("banners sem mudanças")
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     branches: [master]
-    paths-ignore: ["profile/**", "README.md"]
+    paths-ignore: ["profile/**", "README.md", "assets/**"]
     # repository_dispatch:
     #   types: [refresh]
     # Disparo manual de outros repos: curl -X POST -H "Authorization: Bearer <PAT>" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AndersonMohamed/AndersonMohamed/dispatches -d '{"event_type":"refresh"}'
@@ -77,7 +77,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add profile README.md
+          git add profile README.md assets
           if git diff --cached --quiet; then echo "sem mudanças"; exit 0; fi
           git commit -m "Atualiza cards e seções dinâmicas do README"
           git pull --rebase origin master

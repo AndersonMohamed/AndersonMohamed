@@ -1,15 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300" role="img" aria-label="Anderson Mohamed — banner">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300" role="img" aria-label="{{NAME}} — banner">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0f172a"/>
-      <stop offset="100%" stop-color="#1e1b4b"/>
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#eef2ff"/>
     </linearGradient>
     <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.25"/>
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.15"/>
       <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
     </radialGradient>
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#0f172a" stroke-opacity="0.05" stroke-width="1"/>
     </pattern>
     <linearGradient id="nameGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#8b5cf6"/>
@@ -47,20 +47,20 @@
   </circle>
 
   <!-- Chaves decorativas -->
-  <text x="90" y="150" text-anchor="middle" font-family="Consolas, monospace" font-size="60" fill="#8b5cf6" fill-opacity="0.35">{</text>
-  <text x="810" y="150" text-anchor="middle" font-family="Consolas, monospace" font-size="60" fill="#8b5cf6" fill-opacity="0.35">}</text>
+  <text x="90" y="150" text-anchor="middle" font-family="Consolas, monospace" font-size="60" fill="#8b5cf6" fill-opacity="0.3">{</text>
+  <text x="810" y="150" text-anchor="middle" font-family="Consolas, monospace" font-size="60" fill="#8b5cf6" fill-opacity="0.3">}</text>
 
   <!-- Nome -->
-  <text x="450" y="140" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="64" font-weight="700" fill="url(#nameGrad)">Anderson Mohamed</text>
+  <text x="450" y="140" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="64" font-weight="700" fill="url(#nameGrad)">{{NAME}}</text>
 
   <!-- Subtítulo -->
-  <text x="450" y="185" text-anchor="middle" font-family="Consolas, monospace" font-size="20" fill="#94a3b8">Estudante de Administração e Análise e Desenvolvimento de Sistemas.</text>
+  <text x="450" y="185" text-anchor="middle" font-family="Consolas, monospace" font-size="20" fill="#475569">{{SUBTITLE}}</text>
 
   <!-- Cursor piscando -->
-  <rect x="856" y="172" width="12" height="22" fill="#06b6d4">
+  <rect x="{{CURSOR_X}}" y="172" width="12" height="22" fill="#06b6d4">
     <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
   </rect>
 
   <!-- Linha terminal -->
-  <text x="450" y="240" text-anchor="middle" font-family="Consolas, monospace" font-size="14" fill="#64748b">$ whoami → Anderson Mohamed</text>
+  <text x="450" y="240" text-anchor="middle" font-family="Consolas, monospace" font-size="14" fill="#94a3b8">{{WHOAMI}}</text>
 </svg>
