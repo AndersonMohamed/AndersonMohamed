@@ -173,11 +173,13 @@ def build_banners(profile, dry_run=False):
     whoami = f"$ whoami → {name}"
     cursor_x = 450 + (len(subtitle) * 12) // 2 + 4
 
+    # Escapa também aspas duplas: os textos vão em atributos (aria-label) do SVG.
+    _esc = lambda v: escape(v, {'"': "&quot;"})
     values = {
-        "{{NAME}}": escape(name),
-        "{{SUBTITLE}}": escape(subtitle),
+        "{{NAME}}": _esc(name),
+        "{{SUBTITLE}}": _esc(subtitle),
         "{{CURSOR_X}}": str(cursor_x),
-        "{{WHOAMI}}": escape(whoami),
+        "{{WHOAMI}}": _esc(whoami),
     }
 
     changed = []
