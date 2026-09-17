@@ -1,0 +1,102 @@
+name: Update Profile
+on:
+  schedule:
+    - cron: "0 */3 * * *"
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths-ignore: ["profile/**", "README.md"]
+    # repository_dispatch:
+    #   types: [refresh]
+    # Disparo manual de outros repos: curl -X POST -H "Authorization: Bearer <PAT>" -H "Accept: application/vnd.github+json" https://api.github.com/repos/AndersonMohamed/AndersonMohamed/dispatches -d '{"event_type":"refresh"}'
+concurrency:
+  group: update-profile
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  cards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Validar PAT
+        env:
+          GH_TOKEN: ${{ secrets.PROFILE_STATS_TOKEN }}
+        run: gh api user --jq .login
+      - name: Generate stats card (dark)
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: stats
+          options: username=AndersonMohamed&show_icons=true&count_private=true&hide_border=true&theme=radical&locale=pt-br
+          path: profile/stats-dark.svg
+          token: ${{ secrets.PROFILE_STATS_TOKEN }}
+          fail_on_error: "true"
+      - name: Generate stats card (light)
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: stats
+          options: username=AndersonMohamed&show_icons=true&count_private=true&hide_border=true&theme=default&locale=pt-br
+          path: profile/stats-light.svg
+          token: ${{ secrets.PROFILE_STATS_TOKEN }}
+          fail_on_error: "true"
+      - name: Generate top languages card (dark)
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: top-langs
+          options: username=AndersonMohamed&layout=donut&hide_border=true&theme=radical&locale=pt-br
+          path: profile/top-langs-dark.svg
+          token: ${{ secrets.PROFILE_STATS_TOKEN }}
+          fail_on_error: "true"
+      - name: Generate top languages card (light)
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: top-langs
+          options: username=AndersonMohamed&layout=donut&hide_border=true&theme=default&locale=pt-br
+          path: profile/top-langs-light.svg
+          token: ${{ secrets.PROFILE_STATS_TOKEN }}
+          fail_on_error: "true"
+      - name: Generate streak card (dark)
+        uses: DenverCoder1/github-readme-streak-stats@v1.7.0
+        with:
+          options: user=AndersonMohamed&theme=radical&hide_border=true&locale=pt_BR
+          path: profile/streak-dark.svg
+          token: ${{ secrets.PROFILE_STATS_TOKEN }}
+      - name: Generate streak card (light)
+        uses: DenverCoder1/github-readme-streak-stats@v1.7.0
+        with:
+          options: user=AndersonMohamed&theme=default&hide_border=true&locale=pt_BR
+          path: profile/streak-light.svg
+          token: ${{ secrets.PROFILE_STATS_TOKEN }}
+      - name: Atualizar seção de projetos
+        env:
+          GH_TOKEN: ${{ secrets.PROFILE_STATS_TOKEN }}
+        run: python3 scripts/update_projects.py
+      - name: Commit e push (master)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile README.md
+          if git diff --cached --quiet; then echo "sem mudanças"; exit 0; fi
+          git commit -m "Atualiza cards e lista de projetos"
+          git pull --rebase origin master
+          git push
+  snake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate Snake SVG
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: AndersonMohamed
+          github_token: ${{ secrets.PROFILE_STATS_TOKEN }}
+          outputs: |
+            dist/snake.svg?color_snake=#8b5cf6&color_dots=#0f172a,#1e1b4b,#8b5cf6,#06b6d4,#a78bfa
+      - name: Deploy to output branch
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

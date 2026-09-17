@@ -28,25 +28,40 @@ $ ./anderson --status
 
 ---
 
+## 🚀 Projetos
+
+<!-- Lista gerada automaticamente por scripts/update_projects.py (workflow Update Profile). Não edite à mão. -->
+<!-- PROJECTS:START -->
+| Projeto | Descrição | Stack |
+| --- | --- | --- |
+| 🔒 -RADAR-SULTS | — | HTML |
+| 🔒 organizador-de-planilhas | — | Python |
+| 🔒 SITE | — | JavaScript |
+| 🔒 CALCULO-DE-DINHEIRO | — | JavaScript |
+| 🔒 Ola-mundo | primeiro repositório | — |
+<!-- PROJECTS:END -->
+
+---
+
 ## 📊 GitHub Stats
 
-> 💡 Os cards abaixo são **dinâmicos**: atualizam automaticamente conforme os repositórios evoluem — linguagens, commits e contribuições refletem o progresso em tempo real.
+> 💡 Os cards abaixo são gerados e versionados neste repositório por GitHub Actions a cada 3 horas, incluindo dados de repositórios privados. A lista de projetos é atualizada automaticamente.
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=AndersonMohamed&show_icons=true&count_private=true&hide_border=true&theme=radical">
-    <img src="https://github-readme-stats.vercel.app/api?username=AndersonMohamed&show_icons=true&count_private=true&hide_border=true&theme=default" width="49%" alt="GitHub Stats">
+    <source media="(prefers-color-scheme: dark)" srcset="profile/stats-dark.svg">
+    <img src="profile/stats-light.svg" width="49%" alt="GitHub Stats">
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=AndersonMohamed&layout=donut&hide_border=true&theme=radical">
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=AndersonMohamed&layout=donut&hide_border=true&theme=default" width="49%" alt="Top Linguagens">
+    <source media="(prefers-color-scheme: dark)" srcset="profile/top-langs-dark.svg">
+    <img src="profile/top-langs-light.svg" width="49%" alt="Top Linguagens">
   </picture>
 </p>
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=AndersonMohamed&hide_border=true&theme=radical">
-    <img src="https://streak-stats.demolab.com/?user=AndersonMohamed&hide_border=true&theme=default" alt="GitHub Streak">
+    <source media="(prefers-color-scheme: dark)" srcset="profile/streak-dark.svg">
+    <img src="profile/streak-light.svg" alt="GitHub Streak">
   </picture>
 </p>
 
