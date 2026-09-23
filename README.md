@@ -38,8 +38,8 @@ $ ./anderson --bio
 <!-- PROJECTS:START -->
 | Projeto | Descrição | Stack |
 | --- | --- | --- |
-| 🔒 radar-expansao | — | JavaScript |
 | 🔒 -RADAR-SULTS | — | HTML |
+| 🔒 radar-expansao | — | JavaScript |
 | 🔒 organizador-de-planilhas | — | Python |
 | 🔒 SITE | — | JavaScript |
 | 🔒 CALCULO-DE-DINHEIRO | — | JavaScript |
