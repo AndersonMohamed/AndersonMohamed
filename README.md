@@ -36,14 +36,7 @@ $ ./anderson --bio
 
 <!-- Lista gerada automaticamente por scripts/update_readme.py (workflow Update Profile). Não edite à mão. -->
 <!-- PROJECTS:START -->
-| Projeto | Descrição | Stack |
-| --- | --- | --- |
-| 🔒 -RADAR-SULTS | — | HTML |
-| 🔒 radar-expansao | — | JavaScript |
-| 🔒 organizador-de-planilhas | — | Python |
-| 🔒 SITE | — | JavaScript |
-| 🔒 CALCULO-DE-DINHEIRO | — | JavaScript |
-| 🔒 Ola-mundo | primeiro repositório | — |
+_Nenhum projeto público no momento._
 <!-- PROJECTS:END -->
 
 ---

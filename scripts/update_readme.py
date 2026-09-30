@@ -211,6 +211,10 @@ def build_table(repos, include_private):
         if r.get("private") and not include_private:
             continue
         rows.append(r)
+
+    if not rows:
+        return "_Nenhum projeto público no momento._"
+
     rows.sort(key=lambda r: r.get("pushed_at") or "", reverse=True)
 
     shown = rows[:MAX_ITEMS]
@@ -262,10 +266,9 @@ def main():
     )
     parser.add_argument(
         "--include-private",
-        action="store_false",
-        default=True,
-        help="desativa a inclusão de repositórios privados "
-        "(default: incluir como '🔒 nome' sem link)",
+        action="store_true",
+        default=False,
+        help="inclui repositórios privados como '🔒 nome' (default: excluir)",
     )
     args = parser.parse_args()
 
